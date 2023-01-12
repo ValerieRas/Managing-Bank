@@ -1,0 +1,55 @@
+/* CCS DE LA NAVIGATION */
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+    font-size: 40px;
+  }
+  
+nav ul li {
+    float: left;
+  }
+  
+nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 30px;
+    text-decoration: none;
+  }
+  
+nav ul li a:hover {
+    background-color: #111111;
+  }
+
+/* CSS FOOTER */
+
+footer{
+    background-color: #333333;
+    text-align: center;
+    color: white;
+}
+
+/* CSS GRID */
+
+.main-container{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20px;
+}
+
+/* CSS DU BODY */
+.main-container h1{
+    background-color: rgb(79, 136, 117);
+    color: rgb(5, 58, 58);
+    padding: 20px;
+    text-align: center;
+}
+
+.main-container button{
+    background-color:rgb(79, 136, 117);
+    padding:10px;
+    margin-left: 150px;;
+}
