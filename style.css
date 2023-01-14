@@ -53,3 +53,15 @@ footer{
     padding:10px;
     margin-left: 150px;;
 }
+
+
+/* CSS PAGE NOUVEAU CLIENT */
+form input{
+  float: right;
+  margin-right: 700px;
+}
+
+form label{
+  margin-left: 500px;
+
+}

@@ -4,16 +4,16 @@
             <a href="#">Gestion des comptes bancaires</a>
         </li>
         <li>
-            <a href="./index.php">Home</a>
+            <a href="../index.php">Home</a>
         </li>
         <li>
-            <a href="./clients/Gestion-client.php">Clients</a>
+            <a href="../clients/Gestion-client.php">Clients</a>
         </li>
         <li>
-            <a href="./comptes/Gestion-compte.php">Comptes</a>
+            <a href="../comptes/Gestion-compte.php">Comptes</a>
         </li>
         <li>
-            <a href="./transactions/gestion-transactions">Transactions</a>
+            <a href="../transactions/gestion-transactions.php">Transactions</a>
         </li>
     </ul>
 </nav>
