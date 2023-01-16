@@ -3,6 +3,7 @@
 <?php
     include "../includes/head.php";
     include "../includes/connexion-bdd.php";
+    include "/classe-client.php";
 ?>
 <body>
     <?php
@@ -12,8 +13,7 @@
     <br><br>
     <a href="nouveau-client.php"><button id="valid">Nouvel employé</button></a>
     <br><br><br>
-    <!-- Comment chercher client dans une table ??? -->
-    <br><br><br><br><br>
+    <br><br><br>
     <table class="displaytable">
             <thead>
                 <tr>
@@ -29,8 +29,8 @@
             <tbody>
                 <?php
                 // Affichage de la table
-
-                $reponse = $BDD->query('SELECT idcli, nom, prenom, dateNaissance, adresse, tel FROM CLIENT');
+                $client = new client;
+                $affichage = $client->displayclient();
                 while ($donnees = $reponse->fetch()){
                 ?>
                 <tr>
