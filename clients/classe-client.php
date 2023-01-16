@@ -15,7 +15,7 @@ class client{
 
     // Création d'un nouveau client
 
-    public function createnewclient($nom,$prenom,$dateNaissance,$adresse,$tel)
+    public function createnewclient($NOM, $PRENOM,$DATE,$ADRESSE,$TEL)
     {
         $idcli= mt_rand();
 
@@ -25,12 +25,12 @@ class client{
 
         // Préparation de la requête
 
-        $query= $BDD->prepare($sql);
+        $query=$this->connexion->prepare($sql);
 
 
         // On injecte les valeurs
 
-        $query->bindvalue(":idcli",$ID);
+        $query->bindvalue(":idcli",$idcli);
         $query->bindvalue(":nom",$NOM);
         $query->bindvalue(":prenom",$PRENOM);
         $query->bindvalue(":dateNaissance",$DATE);
@@ -55,25 +55,45 @@ class client{
         return $reponse;
     }
 
+    // Affichage d'un seul client
+
+    public function display_oneCli($ID)
+    {
+        $sql='SELECT * FROM CLIENT WHERE idcli=:idcli';
+        $reponse= $this->connexion->prepare($sql);
+        $reponse->bindvalue(":idcli",$ID);
+        $reponse->execute();
+        return $reponse;
+    }
 
     // modification des informations clients
 
-    public function modifclient($nom,$prenom,$dateNaissance,$adresse,$tel)
+    public function modifclient($ID,$NOM,$PRENOM,$DATE,$ADRESSE,$TEL)
     {
-        // Modification sur la base de donnée.
-    
-        $query= $BDD->exec("UPDATE client SET nom='$NOM', prenom='$PRENOM', dateNaissance='$DATE', adresse='$ADRESSE',
-        tel='$TEL' WHERE idcli='$ID'");
-    
+      
+
+        // écriture de la requête
+        $sql="UPDATE client SET nom='$NOM', prenom='$PRENOM', dateNaissance='$DATE', adresse='$ADRESSE',
+        tel='$TEL' WHERE idcli='$ID'";
+
+        // Préparation de la requête
+
+        $query= $this->connexion->prepare($sql);
+
+        // on execute la requête
+
+        $query->execute();
+
         return $query;
+    
     }
 
 
     // Suppression des informations clients
 
-    public function suppclient($idcli)
+    public function suppclient($ID)
     {
-        $query = $BDD->exec("DELETE FROM clients WHERE idcli='$ID'");
+        $query =$this->connexion->exec("DELETE FROM CLIENT WHERE idcli='$ID'");
         return $query;
     }
 }

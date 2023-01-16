@@ -14,6 +14,22 @@
     <?php
     include "../includes/navigation.php";
 
+    include "classe-client.php";
+
+    $client = new client;
+
+    $ID=$_GET['idcli'];
+    
+    $reponse = $client->suppclient($ID);
+
+    if ($reponse){
+
+        echo "<h2>Le client avec l'identifiant IDCLI N°". $ID. " a été suprimmé !!</h2>";
+
+    }else{
+
+        echo "<h1>Suppression impossible.</h2>";
+    }
     ?>
 
 </body>

@@ -13,6 +13,7 @@
 <body>
     <?php
     include "../includes/navigation.php";
+    include "classe-client.php";
     ?>
 
     <!-- Formulaire pour nouveau client -->
@@ -20,10 +21,10 @@
     <br><br><br><br><br>
     <fieldset>
         <form action="#" method="post">
-            <div class="Formclient">
+            <!-- <div class="Formclient">
             <label for="idclient">Identifiant client:</label>
             <input type="text" id="idclient" name="idclient" value="" placeholder="">
-            </div>
+            </div> -->
             <br><br>
             <div class="Formclient">
             <label for="nomclient">Nom:</label>
@@ -67,40 +68,22 @@
 
     if (isset($_POST["submit"])){
 
-        $ID=$_POST["idclient"];
+        // $ID=$_POST["idclient"];
         $NOM=$_POST["nomclient"];
         $PRENOM=$_POST["prenclient"];
         $DATE=$_POST["datenaissance"];
         $ADRESSE=$_POST["adresse"];
         $TEL=$_POST["telclient"];
 
-    // écriture la requête
-    $sql="INSERT INTO client (idcli,nom,prenom,dateNaissance,adresse,tel)
-        VALUES (:idcli,:nom,:prenom,:dateNaissance,:adresse,:tel)";
-    
+    // Appele à la méthode de classe client
+    $client= new client;
 
-    // Préparation de la requête
-
-    $query= $BDD->prepare($sql);
-
-
-    // On injecte les valeurs
-
-    $query->bindvalue(":idcli",$ID);
-    $query->bindvalue(":nom",$NOM);
-    $query->bindvalue(":prenom",$PRENOM);
-    $query->bindvalue(":dateNaissance",$DATE);
-    $query->bindvalue(":adresse",$ADRESSE);
-    $query->bindvalue(":tel",$TEL);
-
-    // on execute la requête
-
-    $query->execute();
+    $query=$client->createnewclient($NOM, $PRENOM,$DATE,$ADRESSE,$TEL);
 
     if($query){
-        echo "Un nouveau client a été inscrit.";
+        echo "<h2>Un nouveau client a été inscrit !</h2>";
     }else{
-        echo "Echec de l'inscription.";
+        echo "<h2>Echec de l'inscription.</h2>";
     }
 
     }
