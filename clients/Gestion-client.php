@@ -3,7 +3,7 @@
 <?php
     include "../includes/head.php";
     include "../includes/connexion-bdd.php";
-    include "/classe-client.php";
+    include "classe-client.php";
 ?>
 <body>
     <?php
@@ -30,7 +30,7 @@
                 <?php
                 // Affichage de la table
                 $client = new client;
-                $affichage = $client->displayclient();
+                $reponse = $client->displayclient();
                 while ($donnees = $reponse->fetch()){
                 ?>
                 <tr>

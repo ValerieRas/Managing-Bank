@@ -1,16 +1,16 @@
 <?php
-require_once "connexion-bdd.php";
+require_once "../includes/connexion-bdd.php";
 
 class client{
 
-    private $cnx;
+    private $connexion;
 
     // Connexion sur la Database.
     
     public function __construct(){
         $BDD = new Database;
-        $connect = $BDD->connectDB();
-        $this->cnx = $connect;
+        $cnx = $BDD->connexionBDD();
+        $this->connexion = $cnx;
     }
 
     // Création d'un nouveau client
@@ -49,9 +49,10 @@ class client{
 
     public function displayclient()
     {
-        $reponse = $BDD->query('SELECT * FROM CLIENT');
-        $donnees = $reponse->fetch();
-        return $donnees;
+        $sql='SELECT * FROM CLIENT';
+        $reponse = $this->connexion->prepare($sql);
+        $reponse->execute();
+        return $reponse;
     }
 
 
