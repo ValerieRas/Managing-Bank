@@ -38,7 +38,7 @@
             <br><br>
             <div class="Formclient">
             <label for="datenaissance">Date de naissance:</label>
-            <input type="text" id="datenaissance" name="datenaissance" value="" placeholder="">
+            <input type="date" id="datenaissance" name="datenaissance" value="" placeholder="">
             </div>
             <br><br>
             <div class="Formclient">
