@@ -21,10 +21,6 @@
     <br><br><br><br><br>
     <fieldset>
         <form action="#" method="post">
-            <!-- <div class="Formclient">
-            <label for="idclient">Identifiant client:</label>
-            <input type="text" id="idclient" name="idclient" value="" placeholder="">
-            </div> -->
             <br><br>
             <div class="Formclient">
             <label for="nomclient">Nom:</label>

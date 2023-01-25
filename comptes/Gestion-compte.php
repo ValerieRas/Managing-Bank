@@ -20,11 +20,12 @@
     <table class="displaytable">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>ID Compte</th>
                     <th>Code Banque</th>
                     <th>Code Guichet</th>
                     <th>RIB</th>
                     <th>Titulaire</th>
+                    <th>ID Client</th>
                     <th>Solde du compte</th>
                     <th>Devise</th>
                     <th>Date de création</th>
@@ -45,6 +46,7 @@
                 <td><?php echo $donnees['codeGuichet']?></td>
                 <td><?php echo $donnees['cleRib']?></td>
                 <td><?php echo $donnees['titulaire']?></td>
+                <td><?php echo $donnees['idcli']?></td>
                 <td><?php echo $donnees['solde']?></td>
                 <td><?php echo $donnees['devise']?></td>
                 <td><?php echo $donnees['dateCreation']?></td>

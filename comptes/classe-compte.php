@@ -6,15 +6,21 @@ class compte
 
  private $connexion;
 
+
+
 // Connexion sur la base de donnée en utilisant la classe Database.
+
     public function __construct(){
        $BDD = new Database;
        $cnx = $BDD->connexionBDD();
        $this->connexion = $cnx;
     }
 
+
+
 // Fonction pour la création d'un compte bancaire
-   public function createNewAccount($idcli, $solde, $devise)
+
+   public function createNewAccount($titulaire,$idcli, $solde, $Devise)
    {
 
     // Random numbers for account parameters
@@ -27,21 +33,22 @@ class compte
       $dateCreation = date("j-m-Y");
 
     // écriture de la requête
-    $sql= "INSERT INTO compte(idcompte, codeBanq, codeGuichet, cleRib, titulaire, solde, devise, dateCreation)
-        VALUES (:idcompte, :codeBanq, :codeGuichet, :cleRib, :titulaire, :solde, :devise, :dateCreation)";
+    $sql= "INSERT INTO compte(idcompte, codeBanq, codeGuichet, cleRib, titulaire, idcli, solde, devise, dateCreation)
+        VALUES (:idcompte, :codeBanq, :codeGuichet, :cleRib, :titulaire,:idcli, :solde, :devise, :dateCreation)";
     
     // préparation de la requête
     $query=$this->connexion->prepare($sql);
 
     // On injecte les valeurs dans les paramètres
-    $query -> bindvalue(':idcompte',);
-    $query -> bindvalue(':codeBanq',);
-    $query -> bindvalue(':codeGuichet',);
-    $query -> bindvalue(':cleRib',);
-    $query -> bindvalue(':titulaire',);
-    $query -> bindvalue(':solde',);
-    $query -> bindvalue(':devise',);
-    $query -> bindvalue(':dateCreation',);
+    $query -> bindvalue(':idcompte',$idcompte);
+    $query -> bindvalue(':codeBanq',$codebanq);
+    $query -> bindvalue(':codeGuichet',$codeGuichet);
+    $query -> bindvalue(':cleRib',$cleRib);
+    $query -> bindvalue(':titulaire',$titulaire);
+    $query -> bindvalue(':idcli',$idcli);
+    $query -> bindvalue(':solde',$solde);
+    $query -> bindvalue(':devise',$Devise);
+    $query -> bindvalue(':dateCreation',$dateCreation);
 
     // on execute la requete
     $query -> execute();
@@ -73,10 +80,10 @@ class compte
 
 // Modification infos des comptes
 
-  public function modifAccount($ID)
+  public function modifAccount($ID, $titulaire, $solde, $devise)
   {
      // écriture de la requête
-     $sql="UPDATE compte SET titulaire='$titulaire', idcli='$idcli', solde ='$solde', devise='$devise' WHERE idcompte='$ID'";
+     $sql="UPDATE compte SET titulaire='$titulaire', solde ='$solde', devise='$devise' WHERE idcompte='$ID'";
 
      // Préparation de la requête
 

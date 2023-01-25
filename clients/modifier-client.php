@@ -22,7 +22,7 @@
     $donnees = $reponse->fetch(); 
 
     ?>
-     <!-- Formulaire pour nouveau client -->
+     <!-- Formulaire pour modifier compte -->
      <div>
     <br><br><br><br><br>
     <fieldset>

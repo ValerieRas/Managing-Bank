@@ -96,5 +96,17 @@ class client{
         $query =$this->connexion->exec("DELETE FROM CLIENT WHERE idcli='$ID'");
         return $query;
     }
+
+
+    //  Selection auto de l'identifiant client lors de la création de compte
+
+    // public function displayidcli($titulaire)
+    // {
+    //     $sql='SELECT idcli FROM CLIENT WHERE nom=:nom';
+    //     $reponse= $this->connexion->prepare($sql);
+    //     $reponse->bindvalue(":nom",$titulaire);
+    //     $reponse->execute();
+    //     return $reponse;
+    // }
 }
 ?>
