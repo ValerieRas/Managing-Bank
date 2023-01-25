@@ -103,6 +103,48 @@ class compte
       $query =$this->connexion->exec("DELETE FROM compte WHERE idcompte='$ID'");
       return $query;
   }
-    
+
+
+
+//   Fonction pour selectionner le solde d'un compte
+  private function Selectsolde()
+  {
+   $sql = 'SELECT solde FROM compte WHERE titulaire = :idcompte';
+        $result = $this->execReq($sql);
+        $result->bindvalue(":idcompte",$id);
+        $result->execute();
+        return $result;
+  }
+
+
+// Fonction pour mis à jour du solde d'un compte
+  private function Updatesolde()
+  {
+   $sql = 'UPDATE compte SET solde = :soldecompte WHERE titulaire = :titulairecompte';
+        $result = $this->execReq($sql);
+        $result->bindvalue(":soldecompte",$montant);
+        $result->bindvalue(":titulairecompte",$compte);
+        $result->execute();
+        return $result;
+  }
+
+
+// Fonction pour créditer un compte
+ public function creditcompter($titulaire, $montant)
+ {
+   $query = $this->Selectsolde($titulaire);
+      $solde = $query->fetchColumn();
+      $solde+=$montant;
+      $this->Updatesolde($titulaire,$solde);
+ }
+
+// Fonction pour débiter un compte
+ public function debitcompte($titulaire, $compte)
+ {
+   $query = $this->Selectsolde($titulaire);
+      $solde = $query->fetchColumn();
+      $solde-=$montant;
+      $this->Updatesolde($titulaire,$solde);
+ }
 }
 ?>
