@@ -107,30 +107,30 @@ class compte
 
 
 //   Fonction pour selectionner le solde d'un compte
-  private function Selectsolde()
+  private function Selectsolde($titulaire)
   {
-   $sql = 'SELECT solde FROM compte WHERE titulaire = :idcompte';
-        $result = $this->execReq($sql);
-        $result->bindvalue(":idcompte",$id);
+   $sql = 'SELECT solde FROM compte WHERE titulaire = :titulaire';
+        $result = $this->connexion->prepare($sql);
+        $result->bindvalue(":titulaire",$titulaire);
         $result->execute();
         return $result;
   }
 
 
 // Fonction pour mis à jour du solde d'un compte
-  private function Updatesolde()
+  private function Updatesolde($titulaire,$montant)
   {
-   $sql = 'UPDATE compte SET solde = :soldecompte WHERE titulaire = :titulairecompte';
-        $result = $this->execReq($sql);
+   $sql = 'UPDATE compte SET solde = :soldecompte WHERE titulaire = :titulaire';
+        $result = $this->connexion->prepare($sql);
         $result->bindvalue(":soldecompte",$montant);
-        $result->bindvalue(":titulairecompte",$compte);
+        $result->bindvalue(":titulaire",$titulaire);
         $result->execute();
         return $result;
   }
 
 
 // Fonction pour créditer un compte
- public function creditcompter($titulaire, $montant)
+ public function creditercompte($titulaire, $montant)
  {
    $query = $this->Selectsolde($titulaire);
       $solde = $query->fetchColumn();
@@ -139,7 +139,7 @@ class compte
  }
 
 // Fonction pour débiter un compte
- public function debitcompte($titulaire, $compte)
+ public function debitercompte($titulaire, $montant)
  {
    $query = $this->Selectsolde($titulaire);
       $solde = $query->fetchColumn();
