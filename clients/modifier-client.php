@@ -13,21 +13,23 @@
 <body>
     <?php
     include "../includes/navigation.php";
+    include "classe-client.php";
 
     // Récupération des infos client à modifier
-    $IDCLI= $_GET['idcli'];
-    $reponse = $BDD->query("SELECT * FROM client WHERE idcli=$IDCLI");
+    $ID= $_GET['idcli'];
+    $client = new client;
+    $reponse = $client->display_oneCli($ID);
     $donnees = $reponse->fetch(); 
 
     ?>
-     <!-- Formulaire pour nouveau client -->
+     <!-- Formulaire pour modifier compte -->
      <div>
     <br><br><br><br><br>
     <fieldset>
         <form action="#" method="post">
             <div class="Formclient">
             <label for="idclient">Identifiant client:</label>
-            <input type="text" id="idclient" name="idclient" value="<?=$IDCLI?>" placeholder="">
+            <input type="text" id="idclient" name="idclient" value="<?=$ID?>" placeholder="">
             </div>
             <br><br>
             <div class="Formclient">
@@ -42,7 +44,7 @@
             <br><br>
             <div class="Formclient">
             <label for="datenaissance">Date de naissance:</label>
-            <input type="text" id="datenaissance" name="datenaissance" value="<?=$donnees["dateNaissance"]?>" placeholder="">
+            <input type="date" id="datenaissance" name="datenaissance" value="<?=$donnees["dateNaissance"]?>" placeholder="">
             </div>
             <br><br>
             <div class="Formclient">
@@ -83,8 +85,7 @@
 
     // Modification sur la base de donnée.
     
-    $query= $BDD->exec("UPDATE client SET nom='$NOM', prenom='$PRENOM', dateNaissance='$DATE', adresse='$ADRESSE',
-    tel='$TEL' WHERE idcli='$ID'");
+    $query= $client->modifclient($ID,$NOM,$PRENOM,$DATE,$ADRESSE,$TEL);
     
 
     if($query){
@@ -98,4 +99,7 @@
     ?>
 
 </body>
+<?php
+    include "../includes/footer.php";
+?>
 </html>
